@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{314c8f69-14b7-459f-ba46-f221acc8ff35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Exeptions">
+      <UniqueIdentifier>{f8186734-94e2-449a-9db5-eac72667a3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{c8a7e56c-bf58-45f1-bc17-8624acf4b2ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Data">
+      <UniqueIdentifier>{5127a1ce-22c3-49e5-b07f-f78b6edee5a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stage">
+      <UniqueIdentifier>{60266fd8-b76d-4a23-90e5-ca51022cdb9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers">
+      <UniqueIdentifier>{dbd7fbd7-7f33-4bb0-bbe8-c57849170b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\Camera">
+      <UniqueIdentifier>{b4bc7edb-4a86-46c4-be13-badfc1e96d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stage\StageConfig">
+      <UniqueIdentifier>{d38b07dc-5c75-47aa-bcee-0991a2d0e511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{2ffc786e-a2c5-46e8-b9e9-6c36be62df5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{de634f13-3046-454e-b728-788a6779181f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser">
+      <UniqueIdentifier>{6a4d9897-5c7c-4aa1-a6ac-fda0ec7f759d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser\XML">
+      <UniqueIdentifier>{07970160-0a76-4349-8009-b6abab0c6234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser\XML\Logo">
+      <UniqueIdentifier>{50196b1d-94d1-4e0b-a8ab-dba81eb21b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser\XML\Level">
+      <UniqueIdentifier>{65b9641a-5d71-46f7-8bc9-fa0c3d7dfcf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser\XML\Fonts">
+      <UniqueIdentifier>{aeb597dd-3498-4250-b490-8ebcc16496ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser\XML\Menus">
+      <UniqueIdentifier>{7ffa7af5-f150-446c-a38f-2907c4736a3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\XMLParser\Reader">
+      <UniqueIdentifier>{609dee0d-4632-4b4b-885b-642a21f3112b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\MovingTypes">
+      <UniqueIdentifier>{3f680c76-4386-4133-a424-735717bef903}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="InitializationException.cpp">
+      <Filter>Utility\Exeptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoScreen.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Hud.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomMovableController.cpp">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="WalkingMovableController.cpp">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualXmlReader.cpp">
+      <Filter>Utility\XMLParser\Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlReader.cpp">
+      <Filter>Utility\XMLParser\Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Info.cpp">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfo.cpp">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelInfo.cpp">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoScreenInfo.cpp">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuInfo.cpp">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="StageInfo.cpp">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="HudInfo.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraControllerInfo.cpp">
+      <Filter>Controllers\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Moving.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyMovingController.cpp">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingController.cpp">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMovingController.cpp">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InitializationException.h">
+      <Filter>Utility\Exeptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoScreen.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Hud.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IController.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMovableController.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkingMovableController.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="IConfigReader.h">
+      <Filter>Utility\XMLParser\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualXmlReader.h">
+      <Filter>Utility\XMLParser\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlReader.h">
+      <Filter>Utility\XMLParser\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="Info.h">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelInfo.h">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoScreenInfo.h">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInfo.h">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="StageConfig.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="StageInfo.h">
+      <Filter>Game\Stage\StageConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="HudInfo.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraControllerInfo.h">
+      <Filter>Controllers\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEvent.h">
+      <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="StageType.h">
+      <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Moving.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMovingController.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingController.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingControllerType.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovingController.h">
+      <Filter>Controllers\MovingTypes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\Media\LogoScreens\win.xml">
+      <Filter>Utility\XMLParser\XML\Logo</Filter>
+    </Xml>
+    <Xml Include="..\Media\LogoScreens\lose.xml">
+      <Filter>Utility\XMLParser\XML\Logo</Filter>
+    </Xml>
+    <Xml Include="..\info.xml">
+      <Filter>Utility\XMLParser\XML</Filter>
+    </Xml>
+    <Xml Include="..\Media\Levels\default.xml">
+      <Filter>Utility\XMLParser\XML\Level</Filter>
+    </Xml>
+    <Xml Include="..\Media\Menus\main.xml">
+      <Filter>Utility\XMLParser\XML\Menus</Filter>
+    </Xml>
+    <Xml Include="..\Media\Menus\playAgain.xml">
+      <Filter>Utility\XMLParser\XML\Menus</Filter>
+    </Xml>
+    <Xml Include="..\Media\Menus\sound.xml">
+      <Filter>Utility\XMLParser\XML\Menus</Filter>
+    </Xml>
+    <Xml Include="..\Media\LogoScreens\about.xml">
+      <Filter>Utility\XMLParser\XML\Logo</Filter>
+    </Xml>
+    <Xml Include="..\Media\LogoScreens\splash.xml">
+      <Filter>Utility\XMLParser\XML\Logo</Filter>
+    </Xml>
+    <Xml Include="..\Media\LogoScreens\help.xml">
+      <Filter>Utility\XMLParser\XML\Logo</Filter>
+    </Xml>
+    <Xml Include="..\Media\Fonts\comic.xml">
+      <Filter>Utility\XMLParser\XML\Fonts</Filter>
+    </Xml>
+    <Xml Include="..\Media\Menus\pauseMenu.xml">
+      <Filter>Utility\XMLParser\XML\Menus</Filter>
+    </Xml>
+    <Xml Include="..\Media\LogoScreens\logo.xml">
+      <Filter>Utility\XMLParser\XML\Logo</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
