@@ -5,6 +5,5 @@
 
 struct StageConfig
 {
-	STAGE_TYPE Type;
-	irr::core::stringw ConfigFilename;
+	
 };

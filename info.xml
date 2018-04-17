@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
     <screen driverType="5" width="1024" height="768" bpp="32" windowed="true" caption="PathGame"/>
-    <assets path="C:/Den/Programming/TestProjects/PathGame/PathGameDemo/PathGame/Media/"/>
+    <assets path="C:/Den/Programming/GitHub/PathGame/Media/"/>
     <performance sleep="10"/>
     <stages>
         <stage type="0" configFilename="LogoScreens/logo.xml"/>
