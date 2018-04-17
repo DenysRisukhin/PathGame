@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "InitializationException.h"
+#include "InitException.h"
 
 #pragma comment(lib, "Irrlicht.lib")
 #pragma comment(lib, "irrKlang.lib")
@@ -8,7 +8,18 @@
 // GitHub
 int main() {
 	
+	Game* game;
 
+	try {
+		game = new Game("C:/Den/Programming/GitHub/PathGame/info.xml");
+	}
+	catch (InitException) {
+		return 1;
+	}
+
+	while (game->update());
+
+	delete game;
 
 	return 0;
 }

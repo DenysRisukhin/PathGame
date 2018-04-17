@@ -5,11 +5,11 @@
 using namespace irr;
 using namespace core;
 
-class InitializationException
+class InitException
 {
 public:
-	InitializationException(const stringw& message);
-	~InitializationException(void);
+	InitException(const stringw& message);
+	~InitException(void);
 
 	const stringw& getMessage() const;
 
