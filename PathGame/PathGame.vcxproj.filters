@@ -34,26 +34,29 @@
     <Filter Include="Utility\XMLParser">
       <UniqueIdentifier>{6a4d9897-5c7c-4aa1-a6ac-fda0ec7f759d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utility\XMLParser\XML">
-      <UniqueIdentifier>{07970160-0a76-4349-8009-b6abab0c6234}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility\XMLParser\XML\Logo">
-      <UniqueIdentifier>{50196b1d-94d1-4e0b-a8ab-dba81eb21b21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility\XMLParser\XML\Level">
-      <UniqueIdentifier>{65b9641a-5d71-46f7-8bc9-fa0c3d7dfcf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility\XMLParser\XML\Fonts">
-      <UniqueIdentifier>{aeb597dd-3498-4250-b490-8ebcc16496ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility\XMLParser\XML\Menus">
-      <UniqueIdentifier>{7ffa7af5-f150-446c-a38f-2907c4736a3e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utility\XMLParser\Reader">
       <UniqueIdentifier>{609dee0d-4632-4b4b-885b-642a21f3112b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Controllers\MovingTypes">
       <UniqueIdentifier>{3f680c76-4386-4133-a424-735717bef903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{72dcc26a-a7a9-4ed9-9890-f4140d1c6d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\XML">
+      <UniqueIdentifier>{07970160-0a76-4349-8009-b6abab0c6234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\XML\Logo">
+      <UniqueIdentifier>{50196b1d-94d1-4e0b-a8ab-dba81eb21b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\XML\Level">
+      <UniqueIdentifier>{65b9641a-5d71-46f7-8bc9-fa0c3d7dfcf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\XML\Fonts">
+      <UniqueIdentifier>{aeb597dd-3498-4250-b490-8ebcc16496ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\XML\Menus">
+      <UniqueIdentifier>{7ffa7af5-f150-446c-a38f-2907c4736a3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -252,43 +255,43 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Media\LogoScreens\win.xml">
-      <Filter>Utility\XMLParser\XML\Logo</Filter>
+      <Filter>Resources\XML\Logo</Filter>
     </Xml>
     <Xml Include="..\Media\LogoScreens\lose.xml">
-      <Filter>Utility\XMLParser\XML\Logo</Filter>
+      <Filter>Resources\XML\Logo</Filter>
     </Xml>
     <Xml Include="..\info.xml">
-      <Filter>Utility\XMLParser\XML</Filter>
+      <Filter>Resources\XML</Filter>
     </Xml>
     <Xml Include="..\Media\Levels\default.xml">
-      <Filter>Utility\XMLParser\XML\Level</Filter>
+      <Filter>Resources\XML\Level</Filter>
     </Xml>
     <Xml Include="..\Media\Menus\main.xml">
-      <Filter>Utility\XMLParser\XML\Menus</Filter>
+      <Filter>Resources\XML\Menus</Filter>
     </Xml>
     <Xml Include="..\Media\Menus\playAgain.xml">
-      <Filter>Utility\XMLParser\XML\Menus</Filter>
+      <Filter>Resources\XML\Menus</Filter>
     </Xml>
     <Xml Include="..\Media\Menus\sound.xml">
-      <Filter>Utility\XMLParser\XML\Menus</Filter>
+      <Filter>Resources\XML\Menus</Filter>
     </Xml>
     <Xml Include="..\Media\LogoScreens\about.xml">
-      <Filter>Utility\XMLParser\XML\Logo</Filter>
+      <Filter>Resources\XML\Logo</Filter>
     </Xml>
     <Xml Include="..\Media\LogoScreens\splash.xml">
-      <Filter>Utility\XMLParser\XML\Logo</Filter>
+      <Filter>Resources\XML\Logo</Filter>
     </Xml>
     <Xml Include="..\Media\LogoScreens\help.xml">
-      <Filter>Utility\XMLParser\XML\Logo</Filter>
+      <Filter>Resources\XML\Logo</Filter>
     </Xml>
     <Xml Include="..\Media\Fonts\comic.xml">
-      <Filter>Utility\XMLParser\XML\Fonts</Filter>
+      <Filter>Resources\XML\Fonts</Filter>
     </Xml>
     <Xml Include="..\Media\Menus\pauseMenu.xml">
-      <Filter>Utility\XMLParser\XML\Menus</Filter>
+      <Filter>Resources\XML\Menus</Filter>
     </Xml>
     <Xml Include="..\Media\LogoScreens\logo.xml">
-      <Filter>Utility\XMLParser\XML\Logo</Filter>
+      <Filter>Resources\XML\Logo</Filter>
     </Xml>
   </ItemGroup>
 </Project>
