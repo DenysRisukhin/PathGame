@@ -6,6 +6,7 @@ class Game;
 
 class HudInfo : Info
 {
+public:
 	HudInfo(Game* game, const irr::io::path& filename);
 	~HudInfo(void);
 
@@ -32,9 +33,7 @@ class HudInfo : Info
 	;
 
 private:
-	/*!
-	Implementation of Config.
-	*/
+
 	void OnNode(const irr::core::stringw& name);
 
 	void readLabel(Label& label);

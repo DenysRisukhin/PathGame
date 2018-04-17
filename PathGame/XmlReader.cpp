@@ -43,3 +43,13 @@ stringw XmlReader::getAttributeValue(const stringw& name)
 {
 	return stringw(_reader->getAttributeValue((const char16*)name.c_str()));
 }
+
+int XmlReader::getAttributeValueAsInt(const stringw& name)
+{
+	return _reader->getAttributeValueAsInt((const char16*)name.c_str());
+}
+
+float XmlReader::getAttributeValueAsFloat(const stringw& name)
+{
+	return _reader->getAttributeValueAsFloat((const char16*)name.c_str());
+}

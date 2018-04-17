@@ -67,19 +67,19 @@ Player* Level::getMainCharacter() const
 
 void Level::refreshStatistics()
 {
-	if (!_board->getCoinsCount()) {
-	//	_hud->showPressAnyKeyIndicator(true);
-		deactivate(GE_LEVEL_SUCCEEDED);
-	}
+	//if (!_board->getCoinsCount()) {
+	////	_hud->showPressAnyKeyIndicator(true);
+	//	deactivate(GE_LEVEL_SUCCEEDED);
+	//}
 
-	u32 lives = _player->getLivesCount();
-	if (!lives) {
-	//	_hud->showPressAnyKeyIndicator(true);
-		deactivate(GE_LEVEL_FAILED);
-	}
+	//u32 lives = _player->getLivesCount();
+	//if (!lives) {
+	////	_hud->showPressAnyKeyIndicator(true);
+	//	deactivate(GE_LEVEL_FAILED);
+	//}
 
-	_hud->setLivesCount(lives);
-	_hud->setCoinsCount(_player->getCoinsCount());
+	//_hud->setLivesCount(lives);
+	//_hud->setCoinsCount(_player->getCoinsCount());
 }
 
 bool Level::OnEvent(const SEvent& event)
@@ -115,7 +115,7 @@ bool Level::OnEvent(const SEvent& event)
 		_paused = false;
 	}
 
-	if (_state == ES_FADING_IN) {
+	/*if (_state == ES_FADING_IN) {
 		for (u32 i = 0; i < _controllers.size(); ++i)
 			_controllers[i]->refresh();
 		_hud->activate();
@@ -131,7 +131,7 @@ bool Level::OnEvent(const SEvent& event)
 		for (u32 i = 0; i < _controllers.size(); ++i)
 			if (_controllers[i]->OnEvent(event))
 				return true;
-	}
+	}*/
 
 	return Stage::OnEvent(event);
 }
@@ -146,45 +146,44 @@ void Level::update()
 	if (_paused)
 		return;
 
-	_player->getNode()->getMaterial(0).MaterialType = _player->isVisible() ? EMT_SOLID : EMT_TRANSPARENT_VERTEX_ALPHA;
+	/*_player->getNode()->getMaterial(0).MaterialType = _player->isVisible() ? EMT_SOLID : EMT_TRANSPARENT_VERTEX_ALPHA;
 
 	_player->update();
 	for (u32 i = 0; i < _enemies.size(); ++i)
-		_enemies[i]->update();
+		_enemies[i]->update();*/
 
-	//_hud->showPressAnyKeyIndicator(true);
 }
 
 IAnimatedMeshSceneNode* Level::createNode(const LevelInfo::Model& model, u32 position)
 {
-	IAnimatedMeshSceneNode* node = _game->getDevice()->getSceneManager()->addAnimatedMeshSceneNode(model.Mesh, _rootNode, -1, _board->getPosition(position));
+	/*IAnimatedMeshSceneNode* node = _game->getDevice()->getSceneManager()->addAnimatedMeshSceneNode(model.Mesh, _rootNode, -1, _board->getPosition(position));
 	node->setAnimationSpeed(model.AnimationSpeed);
-	return node;
+	return node;*/
 }
 
-MovingController* Level::createController(const LevelInfo::MovableController& config)
-{
-	switch (config.Type) {
-
-	case EMCT_MANUAL:
-		return (MovingController*) new PlayerMovingController(_config.Controls);
-
-	case EMCT_PURSUING:
-		return (MovingController*) new EnemyMovingController(_board, _player);
-
-	/*case EMCT_RANDOM:
-		return (MovableController*) new RandomMovableController(
-			_board, config.Parameter.TurnProbability);
-
-	case EMCT_WALKING:
-		return (MovableController*) new WalkingMovableController(
-			_config.WaypointsSets[config.Parameter.WaypointsSetId]);*/
-
-	//default:
-		//throw NotImplementedException();
-
-	}
-}
+//MovingController* Level::createController(const LevelInfo::MovableController& config)
+//{
+//	switch (config.Type) {
+//
+//	case EMCT_MANUAL:
+//		return (MovingController*) new PlayerMovingController(_config.Controls);
+//
+//	case EMCT_PURSUING:
+//		return (MovingController*) new EnemyMovingController(_board, _player);
+//
+//	/*case EMCT_RANDOM:
+//		return (MovableController*) new RandomMovableController(
+//			_board, config.Parameter.TurnProbability);
+//
+//	case EMCT_WALKING:
+//		return (MovableController*) new WalkingMovableController(
+//			_config.WaypointsSets[config.Parameter.WaypointsSetId]);*/
+//
+//	//default:
+//		//throw NotImplementedException();
+//
+//	}
+//}
 
 
 void Level::createCamera()
@@ -198,9 +197,8 @@ void Level::createCamera()
 	_camera->setNearValue(_config.Camera.Near);
 	_camera->setFarValue(_config.Camera.Far);
 
-	//_controllers.push_back((IController*) new CameraController(_game, _camera, _stageInfo.ConfigFilename));
-
-	CameraControllerInfo cameraConfig(_game, _stageInfo.ConfigFilename);
+	
+	/*CameraControllerInfo cameraConfig(_game, _stageInfo.ConfigFilename);
 
 	auto _cameraRadius = cameraConfig.CameraRadius;
 	auto _cameraAngles = cameraConfig.CameraAngles;
@@ -208,28 +206,28 @@ void Level::createCamera()
 	_camera->setPosition(vector3df(
 		_cameraRadius*sinf(_cameraAngles.Y)*cosf(_cameraAngles.X),
 		_cameraRadius*cosf(_cameraAngles.Y),
-		_cameraRadius*sinf(_cameraAngles.Y)*sinf(_cameraAngles.X)));
+		_cameraRadius*sinf(_cameraAngles.Y)*sinf(_cameraAngles.X)));*/
 }
 
 void Level::createBoard()
 {
-	_board = new Map(this, _config);
-	_board->getRootNode()->setParent(_rootNode);
+	/*_board = new Map(this, _config);
+	_board->getRootNode()->setParent(_rootNode);*/
 }
 
 void Level::createMainCharacter()
 {
-	_player = new Player(this, createNode(_config.Models.MainCharacter, _config.MainCharacter.Position), _config);
+	/*_player = new Player(this, createNode(_config.Models.MainCharacter, _config.MainCharacter.Position), _config);
 
 	MovingController* controller = createController(_config.MovableControllers[_config.MainCharacter.ControllerId]);
 	controller->setMovable(_player);
 
-	_controllers.push_back(controller);
+	_controllers.push_back(controller);*/
 }
 
 void Level::createEnemies()
 {
-	for (u32 i = 0; i < _config.Enemies.size(); ++i) {
+	/*for (u32 i = 0; i < _config.Enemies.size(); ++i) {
 		LevelInfo::Enemy& enemy = _config.Enemies[i];
 
 		Enemy* enemyEntity = new Enemy(this, createNode(_config.Models.Enemy, enemy.Position), _config, i);
@@ -240,14 +238,14 @@ void Level::createEnemies()
 		controller->setMovable(enemyEntity);
 
 		_controllers.push_back(controller);
-	}
+	}*/
 }
 
 void Level::removeControllers()
 {
-	for (u32 i = 0; i < _controllers.size(); ++i)
-		delete _controllers[i];
-	_controllers.clear();
+	///*for (u32 i = 0; i < _controllers.size(); ++i)
+	//	delete _controllers[i];
+	//_controllers.clear();*/
 }
 
 void Level::removeCamera()

@@ -12,7 +12,6 @@ using namespace scene;
 
 static const f32 MIN_OPACITY = 0.01f;
 
-static const f32 MIN_OPACITY = 0.01f;
 
 Hud::Hud(Level* level, const path& configFilename) : _game(level->getGame())
 , _config(_game, configFilename)

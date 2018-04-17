@@ -3,7 +3,7 @@
 #include <irrlicht.h>
 #include "IConfigReader.h"
 #include "Game.h"
-#include "InitializationException.h"
+#include "InitException.h"
 //#include "NotImplementedException.h"
 
 using namespace irr;
@@ -65,7 +65,7 @@ protected:
 	{
 		stringw result = _reader->getAttributeValue(attributeName.c_str());
 		if (!result.size())
-			throw InitializationException(attributeName);
+			throw InitException(attributeName);
 		return result;
 	}
 
@@ -117,7 +117,7 @@ protected:
 	{
 		stringw result = read<stringw>(attributeName);
 		if (!_game->getDevice()->getFileSystem()->existFile(result))
-			throw InitializationException(attributeName);
+			throw InitException(attributeName);
 		return result;
 	}
 
@@ -130,7 +130,7 @@ protected:
 	{
 		ITexture* result =_game->getDevice()->getVideoDriver()->getTexture(read<path>(attributeName));
 		if (!result)
-			throw InitializationException(attributeName);
+			throw InitException(attributeName);
 		return result;
 	}
 
@@ -143,7 +143,7 @@ protected:
 	{
 		IGUIFont* result = _game->getDevice()->getGUIEnvironment()->getFont(read<path>(attributeName));
 		if (!result)
-			throw InitializationException(attributeName);
+			throw InitException(attributeName);
 		return result;
 	}
 
@@ -171,7 +171,7 @@ protected:
 	{
 		IAnimatedMesh* result = _game->getDevice()->getSceneManager()->getMesh(read<path>(attributeName));
 		if (!result)
-			throw InitializationException(attributeName);
+			throw InitException(attributeName);
 		return result;
 	}
 

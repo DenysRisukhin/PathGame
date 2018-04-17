@@ -1,13 +1,13 @@
-#pragma once
-
-#include "Moving.h"
-#include "LevelInfo.h"
-
-class Enemy : public Moving
-{
-public:
-	
-
-protected:
-	
-};
+//#pragma once
+//
+//#include "Moving.h"
+//#include "LevelInfo.h"
+//
+//class Enemy : public Moving
+//{
+//public:
+//	
+//
+//protected:
+//	
+//};

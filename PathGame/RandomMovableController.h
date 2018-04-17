@@ -1,14 +1,14 @@
-#pragma once
-
-#include "MovingController.h"
-
-class Map;
-
-class RandomMovableController : MovingController
-{
-public:
-	
-
-private:
-
-};
+//#pragma once
+//
+//#include "MovingController.h"
+//
+//class Map;
+//
+//class RandomMovableController : MovingController
+//{
+//public:
+//	
+//
+//private:
+//
+//};
