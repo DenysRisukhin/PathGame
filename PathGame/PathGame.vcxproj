@@ -156,7 +156,7 @@
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="HudInfo.cpp" />
-    <ClCompile Include="InitializationException.cpp" />
+    <ClCompile Include="InitException.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelInfo.cpp" />
     <ClCompile Include="LogoScreen.cpp" />
@@ -193,7 +193,7 @@
     <ClInclude Include="HudInfo.h" />
     <ClInclude Include="IConfigReader.h" />
     <ClInclude Include="IController.h" />
-    <ClInclude Include="InitializationException.h" />
+    <ClInclude Include="InitException.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelInfo.h" />
     <ClInclude Include="LogoScreen.h" />
