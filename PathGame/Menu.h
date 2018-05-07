@@ -51,7 +51,7 @@ private:
 
 
 	/**
-	* Obatins button by mouse coordinates (if possible) and activates it.
+	* Obtains button by mouse coordinates (if possible) and activates it.
 	* @param x Mouse's horizontal coordinate.
 	* @param y Mouse's vertical coordinate.
 	*/

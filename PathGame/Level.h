@@ -75,7 +75,8 @@ private:
 	/**
 	* Helper for creating controllers for characters.
 	*/
-	//MovingController* createController(const LevelInfo::MovableController& config);
+	//
+	MovingController* createController(const LevelInfo::MovableController& config);
 
 	void createCamera();
 	void createBoard();

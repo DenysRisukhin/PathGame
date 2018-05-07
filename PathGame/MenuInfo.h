@@ -14,7 +14,7 @@ public:
 	irr::u32 ColumnsCount;
 
 	/*!
-	Distance in one dimension(размер) between adjacent elements.
+	Distance in one dimension between adjacent elements.
 	*/
 	irr::u32 Margin;
 
@@ -39,8 +39,6 @@ public:
 		GAME_EVENT Event;
 		irr::core::stringw Text;
 	};
-
-//	irr::video::ITexture* SoundTex;
 
 	irr::gui::IGUIFont* Font;
 	irr::video::SColor FontColor;

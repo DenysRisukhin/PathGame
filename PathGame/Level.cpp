@@ -84,9 +84,7 @@ void Level::refreshStatistics()
 
 bool Level::OnEvent(const SEvent& event)
 {
-	if (_state == ES_ACTIVE &&
-		event.EventType == EET_KEY_INPUT_EVENT &&
-		event.KeyInput.PressedDown) {
+	if (_state == ES_ACTIVE && event.EventType == EET_KEY_INPUT_EVENT && event.KeyInput.PressedDown) {
 
 		if (event.KeyInput.Key == _config.AbortKey) {
 			deactivate(GE_LEVEL_ABORTED);

@@ -13,14 +13,17 @@ Game::Game(const char* configFilename)
 	, _additionalRender(false)
 {
 	// reads config and forces game instance to create device
-
 	GameInfo config(this, configFilename);
 	_sleepValue = 0;// config.Performance.Sleep;
 
-					// creates stages (стянули с конфиг макс размер)
+	// creates stages (стянули с info.xml в массив Stages (харанит структуру StageConfig) все остальные имена .xml и номер для каждого xml.)
+	
 	_stages.reallocate(config.Stages.size());
+	// кладем stages в _stages их 10 или 11
 	for (int i = 0; i < (int)config.Stages.size(); ++i)
 		_stages.push_back(createStage(config.Stages[i]));
+
+	_soundAllowed = true;
 
 	broadcastEvent(GE_GAME_STARTED);
 }
@@ -157,7 +160,6 @@ void Game::broadcastEvent(GAME_EVENT event)
 	userEvent.UserEvent.UserData1 = event;
 
 	OnEvent(userEvent);
-
 }
 
 bool Game::update()
@@ -165,7 +167,12 @@ bool Game::update()
 	bool result = _device->run();
 	if (result) {
 		if (_device->isWindowActive()) {
-			enableSound(true);
+
+		/*	if (_soundAllowed)
+				enableSound(true);
+			else*/
+				enableSound(true);
+
 
 			IVideoDriver* video = _device->getVideoDriver();
 			IGUIEnvironment* gui = _device->getGUIEnvironment();
@@ -183,8 +190,7 @@ bool Game::update()
 			scene->drawAll();
 			gui->drawAll();
 
-			// prepares next frame while current is
-			// being rendered by the GPU
+			// prepares next frame while current is being rendered by the GPU
 			broadcastEvent(GE_FRAME_ENDED);
 
 			video->endScene();
@@ -222,27 +228,38 @@ void Game::enableSound(bool enable)
 
 	if (_soundEnabled != enable)
 		_soundEngine->setSoundVolume(_soundEnabled = enable ? 1 : 0);
+
+	//if (enable == true) {
+	////	//_soundEnabled = true;
+	////	//_soundAllowed = true;
+	//	_soundEngine->setSoundVolume(1.0);
+	//////	_soundEngine->
+	//}
+	//else {
+	////	//_soundEnabled = false;
+	////	//_soundAllowed = false;
+	////	////_soundEngine->setSoundVolume(false);
+	////	//_soundEngine->stopAllSounds();
+	//	_soundEngine->setSoundVolume(0.0);
+	//}
 }
 
 IEventReceiver* Game::createStage(const StageConfig& stage)
 {
 	switch (stage.Type) {
 
-	case ST_LOGO:
-		return (IEventReceiver*) new LogoScreen(this, stage);
+		case ST_LOGO:
+			return (IEventReceiver*) new LogoScreen(this, stage);
 
-	case ST_MENU:
-		return (IEventReceiver*) new Menu(this, stage);
+		case ST_MENU:
+			return (IEventReceiver*) new Menu(this, stage);
 
-	case ST_LEVEL: {
-		auto level = new Level(this, stage);
-		_hud = level->getHud();
-		return (IEventReceiver*)level;
-		return 0;
-	}
-
+		case ST_LEVEL: {
+			auto level = new Level(this, stage);
+			_hud = level->getHud();
+			return (IEventReceiver*)level;
+		}
 				   //default:
 				   //throw NotImplementedException();
-
 	}
 }

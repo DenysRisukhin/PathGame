@@ -10,7 +10,7 @@
 	  backgroundSound="Sounds/background.mp3" loopBackgroundSound="true">
     <activationEvents>
         <activationEvent value="19"/>
-		<activationEvent value="20"/>
+		    <activationEvent value="20"/>
     </activationEvents>
     <buttons clickSound="Sounds/click.wav" selectSound="Sounds/select.wav">
         <button event="7" text="Play Again"/>

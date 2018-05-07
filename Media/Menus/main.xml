@@ -12,8 +12,8 @@
         <activationEvent value="5"/>
         <activationEvent value="6"/>
         <activationEvent value="16"/>
-		<activationEvent value="17"/>
-		<activationEvent value="18"/>
+		    <activationEvent value="17"/>
+		    <activationEvent value="18"/>
     </activationEvents>
     <buttons clickSound="Sounds/click.wav" selectSound="Sounds/select.wav">
         <button event="7" text="Play Game"/>

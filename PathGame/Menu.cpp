@@ -70,13 +70,13 @@ struct Column
 		Root = game->getDevice()->getSceneManager()->addEmptySceneNode();
 
 		Buttons.reallocate(buttonsCount);
+
 		for (u32 i = 0; i < buttonsCount; ++i) {
 
 			Button button(game, config, index*buttonsCount + i);
 
 			button.Root->setParent(Root);
-			button.Root->setPosition(
-				vector3df(0, 100, offset - extent*i));
+			button.Root->setPosition(vector3df(0, 100, offset - extent*i));
 
 			Buttons.push_back(button);
 		}
@@ -111,7 +111,6 @@ Menu::Menu(Game* game, const StageConfig& stage)
 	_selectSound = new Sound(game, _config.SoundFilenames.Select);
 
 	activateButton(0, true);
-	//activateButton(0);
 }
 
 Menu::~Menu(void)
@@ -122,11 +121,10 @@ Menu::~Menu(void)
 
 bool Menu::OnEvent(const SEvent& event)
 {
-	if (isActivationEvent(Game::ToGameEvent(event)))
+	if ( isActivationEvent( Game::ToGameEvent(event) ) )
 		activateButton(0);
 
-	if (_state == ES_ACTIVE && event.EventType == EET_KEY_INPUT_EVENT &&
-		event.KeyInput.PressedDown)
+	if (_state == ES_ACTIVE && event.EventType == EET_KEY_INPUT_EVENT && event.KeyInput.PressedDown)
 		switch (event.KeyInput.Key) {
 
 		case KEY_UP:
@@ -149,10 +147,8 @@ bool Menu::OnEvent(const SEvent& event)
 		_game->getDevice()->getCursorControl()->setVisible(true);
 
 	if (_state == ES_ACTIVE && event.EventType == EET_MOUSE_INPUT_EVENT) {
-		if (event.MouseInput.ButtonStates &
-			(EMIE_LMOUSE_PRESSED_DOWN |
-				EMIE_MMOUSE_PRESSED_DOWN |
-				EMIE_RMOUSE_PRESSED_DOWN))
+
+		if (event.MouseInput.ButtonStates & (EMIE_LMOUSE_PRESSED_DOWN | EMIE_MMOUSE_PRESSED_DOWN | EMIE_RMOUSE_PRESSED_DOWN))
 			clickButton(event.MouseInput.X, event.MouseInput.Y);
 		else
 			activateButton(event.MouseInput.X, event.MouseInput.Y);
@@ -164,11 +160,9 @@ bool Menu::OnEvent(const SEvent& event)
 
 s32 Menu::coordinatesToIndex(s32 x, s32 y)
 {
-	ISceneCollisionManager* collision = _game->getDevice(
-	)->getSceneManager()->getSceneCollisionManager();
+	ISceneCollisionManager* collision = _game->getDevice()->getSceneManager()->getSceneCollisionManager();
 
-	ISceneNode* node = collision->getSceneNodeFromScreenCoordinatesBB(
-		vector2d<s32>(x, y), 0, false, _rootNode);
+	ISceneNode* node = collision->getSceneNodeFromScreenCoordinatesBB(vector2d<s32>(x, y), 0, false, _rootNode);
 
 	return _buttons.linear_search(node);
 }
@@ -185,16 +179,20 @@ void Menu::activateButton(s32 index, bool ignorePrevious)
 		index -= _buttons.size();
 
 	if (!ignorePrevious)
-		_buttons[_activeButtonIndex]->getMaterial(0).setTexture(0,
-			_config.ButtonTextures.Default);
+		_buttons[_activeButtonIndex]->getMaterial(0).setTexture(0,_config.ButtonTextures.Default);
 
-	_buttons[_activeButtonIndex = index]->getMaterial(
-		0).setTexture(0, _config.ButtonTextures.Active);
+	//if (_config.Buttons[_activeButtonIndex].Text == "On")
+	
+	//if (_config.Buttons[_activeButtonIndex].Text == "Off")
+	//	index++;
+
+		_buttons[_activeButtonIndex = index]->getMaterial(0).setTexture(0, _config.ButtonTextures.Active);
 }
 
 void Menu::activateButton(s32 x, s32 y)
 {
 	s32 index = coordinatesToIndex(x, y);
+
 	if (index != -1)
 		activateButton(index);
 }
@@ -203,14 +201,32 @@ void Menu::clickButton()
 {
 	_clickSound->play();
 
-	_buttons[_activeButtonIndex]->getMaterial(0).setTexture(
-		0, _config.ButtonTextures.Clicked);
-	deactivate(_config.Buttons[_activeButtonIndex].Event);
+	_buttons[_activeButtonIndex]->getMaterial(0).setTexture(0, _config.ButtonTextures.Clicked);
+
+	//u32 s = _config.Buttons.size();
+
+	//auto f = _config.Buttons[_activeButtonIndex - 1].Event;
+	//auto f1 = _config.Buttons[_activeButtonIndex + 1].Event;
+	////_config.Buttons[0].Event;
+	////_config.Buttons[1].Event;
+	////_config.Buttons[2].Event;
+	////_config.Buttons[4].Event;
+
+	/*if (_config.Buttons[_activeButtonIndex].Text == "Off") {
+		deactivate(GE_SOUND_OFF);
+	}
+	else*/
+		deactivate(_config.Buttons[_activeButtonIndex].Event);
+
+	/*if (_config.Buttons[_activeButtonIndex].Text == "Off")
+		GE_SOUND_OFF;*/
 }
 
 void Menu::clickButton(s32 x, s32 y)
 {
 	s32 index = coordinatesToIndex(x, y);
+
+
 	if (index != -1) {
 		activateButton(index);
 		clickButton();

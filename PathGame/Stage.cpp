@@ -1,4 +1,5 @@
 #include "Stage.h"
+//#include <iostream>
 
 using namespace irr;
 using namespace core;
@@ -19,9 +20,7 @@ Stage::Stage(Game* game, const StageConfig& stage, const stringw& nodeName)
 	_fader = _game->getDevice()->getGUIEnvironment()->addInOutFader();
 	_fader->setVisible(false);
 
-	_backgroundSound = new Sound(_game,
-		_stageConfig.BackgroundSoundFilename,
-		_stageConfig.LoopBackgroundSound);
+	_backgroundSound = new Sound(_game, _stageConfig.BackgroundSoundFilename, _stageConfig.LoopBackgroundSound);
 }
 
 Stage::~Stage(void)
@@ -85,31 +84,27 @@ void Stage::deactivate()
 void Stage::deactivate(GAME_EVENT deactivationEvent)
 {
 	_deactivationEvent = deactivationEvent;
+	//std::cout << "******************************_deactivationEvent = " << _deactivationEvent << std::endl;
 	_state = ES_FADING_OUT;
 	_fader->fadeOut(_stageConfig.FadeTime);
 }
 
 void Stage::createOrthoCamera()
 {
-	dimension2d<u32> screenSize = _game->getDevice(
-	)->getVideoDriver()->getScreenSize();
+	dimension2d<u32> screenSize = _game->getDevice()->getVideoDriver()->getScreenSize();
 
 	matrix4 matrix;
-	matrix.buildProjectionMatrixOrthoLH(
-		(f32)screenSize.Width, (f32)screenSize.Height, -1000, 1000);
+	matrix.buildProjectionMatrixOrthoLH((f32)screenSize.Width, (f32)screenSize.Height, -1000, 1000);
 
-	_camera = _game->getDevice()->getSceneManager()->addCameraSceneNode(
-		NULL, vector3df(0, 1000, 0), vector3df(), -1, false);
+	_camera = _game->getDevice()->getSceneManager()->addCameraSceneNode(NULL, vector3df(0, 1000, 0), vector3df(), -1, false);
 	_camera->setProjectionMatrix(matrix, true);
 	_camera->setUpVector(vector3df(0, 0, 1));
 }
 
 void Stage::createBackground()
 {
-	dimension2d<u32> screenSize = _game->getDevice(
-	)->getVideoDriver()->getScreenSize();
-	dimension2d<f32> screenSizeF32 = dimension2d<f32>(
-		(f32)screenSize.Width, (f32)screenSize.Height);
+	dimension2d<u32> screenSize = _game->getDevice()->getVideoDriver()->getScreenSize();
+	dimension2d<f32> screenSizeF32 = dimension2d<f32>((f32)screenSize.Width, (f32)screenSize.Height);
 
 	ISceneManager* scene = _game->getDevice()->getSceneManager();
 	const IGeometryCreator* geometry = scene->getGeometryCreator();
@@ -118,14 +113,10 @@ void Stage::createBackground()
 	material.MaterialType = EMT_TRANSPARENT_ALPHA_CHANNEL;
 
 	dimension2d<u32> textureSize = _stageConfig.BackgroundTexture->getSize();
-	dimension2d<f32> textureRepeats = dimension2d<f32>(
-		screenSizeF32.Width / textureSize.Width,
-		screenSizeF32.Height / textureSize.Height);
+	dimension2d<f32> textureRepeats = dimension2d<f32>(	screenSizeF32.Width / textureSize.Width, screenSizeF32.Height / textureSize.Height);
 
 	material.setTexture(0, _stageConfig.BackgroundTexture);
-	scene->addMeshSceneNode(geometry->createPlaneMesh(
-		screenSizeF32, dimension2d<u32>(1, 1), &material, textureRepeats),
-		_rootNode);
+	scene->addMeshSceneNode(geometry->createPlaneMesh(screenSizeF32, dimension2d<u32>(1, 1), &material, textureRepeats), _rootNode);
 }
 
 bool Stage::isActivationEvent(GAME_EVENT event)

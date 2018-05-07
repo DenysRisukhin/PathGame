@@ -49,9 +49,9 @@ protected:
 	enum E_STATE
 	{
 		ES_INACTIVE,
-		ES_FADING_IN,
+		ES_FADING_IN,  // appeare
 		ES_ACTIVE,
-		ES_FADING_OUT
+		ES_FADING_OUT  // disappeare
 	} _state;
 
 	void createOrthoCamera();
