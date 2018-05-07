@@ -168,11 +168,7 @@ bool Game::update()
 	if (result) {
 		if (_device->isWindowActive()) {
 
-		/*	if (_soundAllowed)
-				enableSound(true);
-			else*/
-				enableSound(true);
-
+			enableSound(true);
 
 			IVideoDriver* video = _device->getVideoDriver();
 			IGUIEnvironment* gui = _device->getGUIEnvironment();
@@ -228,20 +224,6 @@ void Game::enableSound(bool enable)
 
 	if (_soundEnabled != enable)
 		_soundEngine->setSoundVolume(_soundEnabled = enable ? 1 : 0);
-
-	//if (enable == true) {
-	////	//_soundEnabled = true;
-	////	//_soundAllowed = true;
-	//	_soundEngine->setSoundVolume(1.0);
-	//////	_soundEngine->
-	//}
-	//else {
-	////	//_soundEnabled = false;
-	////	//_soundAllowed = false;
-	////	////_soundEngine->setSoundVolume(false);
-	////	//_soundEngine->stopAllSounds();
-	//	_soundEngine->setSoundVolume(0.0);
-	//}
 }
 
 IEventReceiver* Game::createStage(const StageConfig& stage)

@@ -57,11 +57,11 @@ main      defaultDeactivationEvent="0" 	    GE_NULL
 	  <activationEvent value="17"/>	    GE_HELP_SCREEN_FINISHED
 	  <activationEvent value="18"/>     GE_ABOUT_SCREEN_FINISHED
 	  
-        <button event="7" text="Play Game"/> GE_LEVEL_REQUESTED,
-        <button event="8" text="Sound"/>     GE_SOUND_MENU_REQUESTED,
-        <button event="9" text="Control"/>   GE_HELP_REQUESTED,
-        <button event="10" text="About"/>    GE_ABOUT_REQUESTED,
-        <button event="11" text="Exit"/>     GE_EXIT_REQUESTED,
+        <button event="7" text="Play Game"/> GE_LEVEL_REQUESTED
+        <button event="8" text="Sound"/>     GE_SOUND_MENU_REQUESTED
+        <button event="9" text="Control"/>   GE_HELP_REQUESTED
+        <button event="10" text="About"/>    GE_ABOUT_REQUESTED
+        <button event="11" text="Exit"/>     GE_EXIT_REQUESTED
 
 pauseMenu defaultDeactivationEvent="0"
 	  type="1"
@@ -82,8 +82,8 @@ playAgain defaultDeactivationEvent="0"
 
 sound	  defaultDeactivationEvent="0"        GE_NULL
 	  type="1"
-	  <activationEvent value="4"/>        GE_SPLASH_SCREEN_FINISHED,
-          <activationEvent value="8"/>        GE_SOUND_MENU_REQUESTED,
+	  <activationEvent value="4"/>        GE_SPLASH_SCREEN_FINISHED
+          <activationEvent value="8"/>        GE_SOUND_MENU_REQUESTED
 
 	  <button event="5" text="On"/>       GE_SOUND_ON
           <button event="6" text="Off"/>      GE_SOUND_OFF

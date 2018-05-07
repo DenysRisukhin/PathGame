@@ -181,12 +181,7 @@ void Menu::activateButton(s32 index, bool ignorePrevious)
 	if (!ignorePrevious)
 		_buttons[_activeButtonIndex]->getMaterial(0).setTexture(0,_config.ButtonTextures.Default);
 
-	//if (_config.Buttons[_activeButtonIndex].Text == "On")
-	
-	//if (_config.Buttons[_activeButtonIndex].Text == "Off")
-	//	index++;
-
-		_buttons[_activeButtonIndex = index]->getMaterial(0).setTexture(0, _config.ButtonTextures.Active);
+	_buttons[_activeButtonIndex = index]->getMaterial(0).setTexture(0, _config.ButtonTextures.Active);
 }
 
 void Menu::activateButton(s32 x, s32 y)
@@ -203,23 +198,7 @@ void Menu::clickButton()
 
 	_buttons[_activeButtonIndex]->getMaterial(0).setTexture(0, _config.ButtonTextures.Clicked);
 
-	//u32 s = _config.Buttons.size();
-
-	//auto f = _config.Buttons[_activeButtonIndex - 1].Event;
-	//auto f1 = _config.Buttons[_activeButtonIndex + 1].Event;
-	////_config.Buttons[0].Event;
-	////_config.Buttons[1].Event;
-	////_config.Buttons[2].Event;
-	////_config.Buttons[4].Event;
-
-	/*if (_config.Buttons[_activeButtonIndex].Text == "Off") {
-		deactivate(GE_SOUND_OFF);
-	}
-	else*/
-		deactivate(_config.Buttons[_activeButtonIndex].Event);
-
-	/*if (_config.Buttons[_activeButtonIndex].Text == "Off")
-		GE_SOUND_OFF;*/
+	deactivate(_config.Buttons[_activeButtonIndex].Event);
 }
 
 void Menu::clickButton(s32 x, s32 y)

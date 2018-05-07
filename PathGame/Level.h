@@ -3,6 +3,7 @@
 #include "Stage.h"
 #include "LevelInfo.h"
 #include "IController.h"
+#include "MovingController.h"
 
 class Hud;
 class Map;
@@ -10,23 +11,17 @@ class Player;
 class Enemy;
 class MovingController;
 
-/**
-* Represents game level. This is actually "game itself":
-* board, obstacels, coins, main character, environment etc.
+/*!
+Represents game level. This is actually "game itself":
+board, obstacels, coins, main character, environment etc.
 */
-
-/**
-* 
-*/
-
-class Level : Stage 
+class Level : Stage // этап
 {
 public:
-
-	/**
-	* Initializes level using provided info.
-	* @param game Game instance.
-	* @param stage Contains path to config file.
+	/*!
+	Initializes level using provided info.
+	@param game Game instance.
+	@param stage Contains path to config file.
 	*/
 	Level(Game* game, const StageConfig& stage);
 	~Level(void);
@@ -38,11 +33,14 @@ public:
 
 	Hud* getHud();
 
-	/**
-	* Refreshes HUD and checks win and loss conditions.
+	/*!
+	Refreshes HUD and checks win and loss conditions.
 	*/
 	void refreshStatistics();
 
+	/*!
+	Implementation of IEventReceiver.
+	*/
 	virtual bool OnEvent(const irr::SEvent& event);
 
 private:
@@ -53,29 +51,28 @@ private:
 	Player* _player;
 	irr::core::array<Enemy*> _enemies;
 
-	//irr::core::array<IController*> _controllers;
+	irr::core::array<IController*> _controllers;
 
 	bool _paused;
 
-	/**
-	* Pauses or resumes level.
+	/*!
+	Pauses or resumes level.
 	*/
 	void togglePaused();
 
-	/**
-	* Implementation of Stage.
+	/*!
+	Implementation of Stage.
 	*/
 	void update();
-		
-	/**
-	* Helper for creating scene nodes for characters.
+
+	/*!
+	Helper for creating scene nodes for characters.
 	*/
 	irr::scene::IAnimatedMeshSceneNode* createNode(const LevelInfo::Model& model, irr::u32 position);
 
-	/**
-	* Helper for creating controllers for characters.
+	/*!
+	Helper for creating controllers for characters.
 	*/
-	//
 	MovingController* createController(const LevelInfo::MovableController& config);
 
 	void createCamera();
