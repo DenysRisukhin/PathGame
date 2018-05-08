@@ -205,7 +205,6 @@ void Menu::clickButton(s32 x, s32 y)
 {
 	s32 index = coordinatesToIndex(x, y);
 
-
 	if (index != -1) {
 		activateButton(index);
 		clickButton();

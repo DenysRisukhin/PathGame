@@ -4,8 +4,8 @@
 Map::Map(Level* level, const LevelInfo& config)
 	: _game(level->getGame())
 	, _rootNode(level->getGame()->getDevice()->getSceneManager()->addEmptySceneNode())
-	, _width(config.Board.Width)
-	, _height(config.Board.Height)
+	, _width(config.Map.Width)
+	, _height(config.Map.Height)
 	, _obstacles(config.Obstacles)
 	, _coins(config.Coins)
 {
@@ -13,17 +13,17 @@ Map::Map(Level* level, const LevelInfo& config)
 
 	vector3df cellSize = config.Models.Floor.Mesh->getBoundingBox().getExtent();
 
-	f32 width = cellSize.X, fullWidth = width*config.Board.Width,
+	f32 width = cellSize.X, fullWidth = width*config.Map.Width,
 		xOffset = fullWidth*0.5f;
-	f32 height = cellSize.Z, fullHeight = height*config.Board.Height,
+	f32 height = cellSize.Z, fullHeight = height*config.Map.Height,
 		yOffset = fullHeight*0.5f;
 
 	_minimalDistance = width < height ? width : height;
 	_maximalDistanceSquared = fullWidth*fullWidth + fullHeight*fullHeight;
 
-	_cells.reallocate(config.Board.Width*config.Board.Height);
-	for (u32 i = 0; i < config.Board.Width; ++i)
-		for (u32 j = 0; j < config.Board.Height; ++j) {
+	_cells.reallocate(config.Map.Width*config.Map.Height);
+	for (u32 i = 0; i < config.Map.Width; ++i)
+		for (u32 j = 0; j < config.Map.Height; ++j) {
 			f32 x = width*i - xOffset, y = height*j - yOffset;
 			_cells.push_back(rectf(x, y, x + width, y + height));
 		}

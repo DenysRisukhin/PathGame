@@ -7,13 +7,11 @@ using namespace irr;
 using namespace io;
 using namespace scene;
 
-Player::Player(Level* level,
-	IAnimatedMeshSceneNode* node, const LevelInfo& config)
-	: Moving(level, node, config.MainCharacter.Position,
-		config.MainCharacter.Speed, config.SoundFilenames.Hit)
+Player::Player(Level* level, IAnimatedMeshSceneNode* node, const LevelInfo& config)
+	: Moving(level, node, config.Player.Position, config.Player.Speed, config.SoundFilenames.Hit)
 	, _game(level->getGame())
-	, _livesCount(config.MainCharacter.LivesCount)
-	, _invisibilityTime(config.MainCharacter.InvisibilityTime)
+	, _livesCount(config.Player.LivesCount)
+	, _invisibilityTime(config.Player.InvisibilityTime)
 	, _coinsCount(0)
 	, _time(level->getGame()->getDevice()->getTimer()->getTime())
 {
@@ -60,7 +58,7 @@ u32 Player::getCoinsCount() const
 
 void Player::OnPosition(u32 position)
 {
-	bool result = _level->getBoard()->collectCoin(position);
+	bool result = _level->getMap()->collectCoin(position);
 	if (result) {
 		++_coinsCount;
 		_coinSound->play(false);

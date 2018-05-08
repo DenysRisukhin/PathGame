@@ -5,9 +5,7 @@
 #include "Enemy.h"
 #include "CameraControllerInfo.h"
 #include "PlayerMovingController.h"
-#include "RandomMovableController.h"
 #include "EnemyMovingController.h"
-#include "WalkingMovableController.h"
 
 using namespace irr;
 using namespace core;
@@ -26,13 +24,13 @@ Level::Level(Game* game, const StageConfig& stage)
 
 	// skybox
 	_game->getDevice()->getSceneManager()->addSkyBoxSceneNode(
-		_config.Environment.Top, _config.Environment.Bottom,
-		_config.Environment.Left, _config.Environment.Right,
-		_config.Environment.Front, _config.Environment.Back, _rootNode);
+		_config.SkyBox.Top, _config.SkyBox.Bottom,
+		_config.SkyBox.Left, _config.SkyBox.Right,
+		_config.SkyBox.Front, _config.SkyBox.Back, _rootNode);
 
 	// entities
-	createBoard();
-	createMainCharacter();
+	createMap();
+	createPlayer();
 	createEnemies();
 
 	// hud
@@ -45,8 +43,8 @@ Level::~Level(void)
 
 	removeControllers();
 	removeCamera();
-	removeBoard();
-	removeMainCharacter();
+	removeMap();
+	removePlayer();
 	removeEnemies();
 }
 
@@ -55,19 +53,19 @@ Game* Level::getGame() const
 	return _game;
 }
 
-Map* Level::getBoard() const
+Map* Level::getMap() const
 {
-	return _board;
+	return _map;
 }
 
-Player* Level::getMainCharacter() const
+Player* Level::getPlayer() const
 {
 	return _player;
 }
 
 void Level::refreshStatistics()
 {
-	if (!_board->getCoinsCount()) {
+	if (!_map->getCoinsCount()) {
 		//	_hud->showPressAnyKeyIndicator(true);
 		deactivate(GE_LEVEL_SUCCEEDED);
 	}
@@ -101,15 +99,15 @@ bool Level::OnEvent(const SEvent& event)
 
 	if (Game::ToGameEvent(event) == GE_LEVEL_REQUESTED) {
 		removeCamera();
-		removeBoard();
-		removeMainCharacter();
+		removeMap();
+		removePlayer();
 		removeEnemies();
 
 		removeControllers();
 
 		createCamera();
-		createBoard();
-		createMainCharacter();
+		createMap();
+		createPlayer();
 		createEnemies();
 
 		_paused = false;
@@ -157,7 +155,7 @@ void Level::update()
 
 IAnimatedMeshSceneNode* Level::createNode(const LevelInfo::Model& model, u32 position)
 {
-	IAnimatedMeshSceneNode* node = _game->getDevice()->getSceneManager()->addAnimatedMeshSceneNode(model.Mesh, _rootNode, -1, _board->getPosition(position));
+	IAnimatedMeshSceneNode* node = _game->getDevice()->getSceneManager()->addAnimatedMeshSceneNode(model.Mesh, _rootNode, -1, _map->getPosition(position));
 	node->setAnimationSpeed(model.AnimationSpeed);
 	return node;
 }
@@ -166,15 +164,15 @@ MovingController* Level::createController(const LevelInfo::MovableController& co
 {
 	switch (config.Type) {
 
-	case EMCT_MANUAL:
+	case EMCT_PLAYER:
 		return (MovingController*) new PlayerMovingController(_config.Controls);
 
-	case EMCT_PURSUING:
-		return (MovingController*) new EnemyMovingController(_board, _player);
+	case EMCT_ENEMY:
+		return (MovingController*) new EnemyMovingController(_map, _player);
 
 		/*case EMCT_RANDOM:
 		return (MovableController*) new RandomMovableController(
-		_board, config.Parameter.TurnProbability);
+		_map, config.Parameter.TurnProbability);
 
 		case EMCT_WALKING:
 		return (MovableController*) new WalkingMovableController(
@@ -211,17 +209,17 @@ void Level::createCamera()
 		_cameraRadius*sinf(_cameraAngles.Y)*sinf(_cameraAngles.X)));
 }
 
-void Level::createBoard()
+void Level::createMap()
 {
-	_board = new Map(this, _config);
-	_board->getRootNode()->setParent(_rootNode);
+	_map = new Map(this, _config);
+	_map->getRootNode()->setParent(_rootNode);
 }
 
-void Level::createMainCharacter()
+void Level::createPlayer()
 {
-	_player = new Player(this, createNode(_config.Models.MainCharacter, _config.MainCharacter.Position), _config);
+	_player = new Player(this, createNode(_config.Models.Player, _config.Player.Position), _config);
 
-	MovingController* controller = createController(_config.MovableControllers[_config.MainCharacter.ControllerId]);
+	MovingController* controller = createController(_config.MovableControllers[_config.Player.ControllerId]);
 	controller->setMovable(_player);
 
 	_controllers.push_back(controller);
@@ -255,12 +253,12 @@ void Level::removeCamera()
 	_camera->remove();
 }
 
-void Level::removeBoard()
+void Level::removeMap()
 {
-	delete _board;
+	delete _map;
 }
 
-void Level::removeMainCharacter()
+void Level::removePlayer()
 {
 	delete _player;
 }

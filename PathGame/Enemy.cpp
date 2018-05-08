@@ -8,8 +8,7 @@ using namespace core;
 using namespace scene;
 
 Enemy::Enemy(Level* level, IAnimatedMeshSceneNode* node, const LevelInfo& config, u32 index)
-	: Moving(level, node, config.Enemies[index].Position,
-		config.Enemies[index].Speed, config.SoundFilenames.Hit)
+	  : Moving(level, node, config.Enemies[index].Position, config.Enemies[index].Speed, config.SoundFilenames.Hit)
 {
 	node->setScale({ 30, 30, 30 });
 	node->setFrameLoop(1, 13);
@@ -23,8 +22,8 @@ Enemy::~Enemy(void)
 
 void Enemy::update()
 {
-	Player* character = _level->getMainCharacter();
-	Map* board = _level->getBoard();
+	Player* character = _level->getPlayer();
+	Map* board = _level->getMap();
 
 	vector3df characterPosition = board->getPosition(
 		character->getPosition());

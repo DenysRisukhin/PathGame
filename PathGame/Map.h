@@ -16,6 +16,7 @@ class Map
 public:
 
 	Map(Level* level, const LevelInfo& config);
+
 	~Map(void);
 
 	irr::scene::ISceneNode* getRootNode() const;
@@ -58,7 +59,6 @@ private:
 	/*!
 	Helper for adding cell's content.
 	*/
-	irr::scene::IAnimatedMeshSceneNode* addCellContent(irr::u32 cell,
-		irr::scene::IAnimatedMesh* mesh, irr::f32 yOffset = 0);
+	irr::scene::IAnimatedMeshSceneNode* addCellContent(irr::u32 cell, irr::scene::IAnimatedMesh* mesh, irr::f32 yOffset = 0);
 };
 

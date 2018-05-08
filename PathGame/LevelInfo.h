@@ -8,7 +8,7 @@
 /*!
 Represents level config: contains a lot of settings
 not only for level as high level entity, but also for
-the most of level entities such as board, a set of enemies etc.
+the most of level entities such as map, a set of enemies etc.
 (You can think that it is in some extent over-saturated but
 decision to store almost all level-related information in one place
 was taken to prevent creation of tens of small files in the
@@ -28,8 +28,6 @@ public:
 
 	LevelInfo() {}
 	LevelInfo(LevelInfo &&) {}
-	//LevelConfig(const LevelConfig&) = default;
-	//LevelConfig& operator=(const LevelConfig&) = default;
 
 	irr::EKEY_CODE AbortKey;
 	irr::EKEY_CODE PauseKey;
@@ -49,16 +47,16 @@ public:
 		irr::video::ITexture* Right;
 		irr::video::ITexture* Top;
 		irr::video::ITexture* Bottom;
-	} Environment;
+	} SkyBox;
 
 	/*!
-	Size of the board in cells.
+	Size of the map in cells.
 	*/
 	struct
 	{
 		irr::u32 Width;
 		irr::u32 Height;
-	} Board;
+	} Map;
 
 	struct Model
 	{
@@ -73,7 +71,7 @@ public:
 		Model Obstacle;
 		Model Coin;
 		Model Enemy;
-		Model MainCharacter;
+		Model Player;
 	} Models;
 
 	irr::f32 CoinRotationSpeed;
@@ -102,7 +100,7 @@ public:
 		irr::u32 LivesCount;
 		irr::u32 InvisibilityTime;
 		irr::f32 Speed;
-	} MainCharacter;
+	} Player;
 
 	struct Enemy
 	{
@@ -137,7 +135,7 @@ private:
 
 	void readCamera(const irr::core::stringw& name);
 	void readEnvironment(const irr::core::stringw& name);
-	void readBoard(const irr::core::stringw& name);
+	void readMap(const irr::core::stringw& name);
 	void readCharacters(const irr::core::stringw& name);
 	void readControllers(const irr::core::stringw& name);
 

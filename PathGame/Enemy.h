@@ -16,9 +16,8 @@ public:
 	@param config Level's config.
 	@param index Enemy index (from 0 to count - 1).
 	*/
-	Enemy(Level* level,
-		irr::scene::IAnimatedMeshSceneNode* node,
-		const LevelInfo& config, irr::u32 index);
+	Enemy(Level* level, irr::scene::IAnimatedMeshSceneNode* node, const LevelInfo& config, irr::u32 index);
+
 	~Enemy(void);
 
 	/*!

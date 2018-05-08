@@ -21,10 +21,7 @@ public:
 	@param hitSoundFilename Path to sound file that will be played if
 	movable entity was reached obstacle.
 	*/
-	Moving(Level* level,
-		irr::scene::IAnimatedMeshSceneNode* node,
-		irr::u32 position, irr::f32 speed,
-		const irr::io::path& hitSoundFilename);
+	Moving(Level* level, irr::scene::IAnimatedMeshSceneNode* node, irr::u32 position, irr::f32 speed, const irr::io::path& hitSoundFilename);
 	~Moving(void);
 
 	/*!

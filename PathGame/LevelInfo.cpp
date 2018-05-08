@@ -24,7 +24,7 @@ void LevelInfo::OnNode(const stringw& name)
 {
 	readCamera(name);
 	readEnvironment(name);
-	readBoard(name);
+	readMap(name);
 	readCharacters(name);
 	readControllers(name);
 }
@@ -45,12 +45,12 @@ void LevelInfo::readEnvironment(const stringw& name)
 {
 	if (name == "environment") {
 
-		Environment.Back = read<ITexture*>("back");
-		Environment.Bottom = read<ITexture*>("bottom");
-		Environment.Front = read<ITexture*>("front");
-		Environment.Left = read<ITexture*>("left");
-		Environment.Right = read<ITexture*>("right");
-		Environment.Top = read<ITexture*>("top");
+		SkyBox.Back = read<ITexture*>("back");
+		SkyBox.Bottom = read<ITexture*>("bottom");
+		SkyBox.Front = read<ITexture*>("front");
+		SkyBox.Left = read<ITexture*>("left");
+		SkyBox.Right = read<ITexture*>("right");
+		SkyBox.Top = read<ITexture*>("top");
 
 	}
 	else if (name == "sound") {
@@ -79,12 +79,12 @@ void LevelInfo::readEnvironment(const stringw& name)
 	}
 }
 
-void LevelInfo::readBoard(const stringw& name)
+void LevelInfo::readMap(const stringw& name)
 {
 	if (name == "board") {
 
-		Board.Width = read<u32>("width");
-		Board.Height = read<u32>("height");
+		Map.Width = read<u32>("width");
+		Map.Height = read<u32>("height");
 
 		readModel(Models.Floor);
 
@@ -117,14 +117,14 @@ void LevelInfo::readCharacters(const stringw& name)
 {
 	if (name == "mainCharacter") {
 
-		MainCharacter.ControllerId = read<u32>("controllerId");
+		Player.ControllerId = read<u32>("controllerId");
 
-		readModel(Models.MainCharacter);
+		readModel(Models.Player);
 
-		MainCharacter.Position = read<u32>("position");
-		MainCharacter.LivesCount = read<u32>("livesCount");
-		MainCharacter.InvisibilityTime = read<u32>("invisibilityTime");
-		MainCharacter.Speed = read<f32>("speed");
+		Player.Position = read<u32>("position");
+		Player.LivesCount = read<u32>("livesCount");
+		Player.InvisibilityTime = read<u32>("invisibilityTime");
+		Player.Speed = read<f32>("speed");
 
 	}
 	else if (name == "enemies") {
@@ -150,7 +150,7 @@ void LevelInfo::readControllers(const stringw& name)
 	if (name == "playerMovableController") {
 
 		MovableController controller;
-		controller.Type = EMCT_MANUAL;
+		controller.Type = EMCT_PLAYER;
 		MovableControllers.set(read<u32>("id"), controller);
 
 	}
@@ -173,7 +173,7 @@ void LevelInfo::readControllers(const stringw& name)
 	else if (name == "enemyMovableController") {
 
 		MovableController controller;
-		controller.Type = EMCT_PURSUING;
+		controller.Type = EMCT_ENEMY;
 		MovableControllers.set(read<u32>("id"), controller);
 
 	}

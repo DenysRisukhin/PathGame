@@ -36,7 +36,7 @@ void Moving::update()
 	if (isStopped()) {
 		OnPosition(_position);
 
-		Map* board = _level->getBoard();
+		Map* board = _level->getMap();
 		if (board->canMove(_position, _requestedDirection)) {
 			if (_animator = getAnimator()) {
 
@@ -77,7 +77,7 @@ IAnimatedMeshSceneNode* Moving::getNode() const
 
 ISceneNodeAnimator* Moving::getAnimator()
 {
-	Map* board = _level->getBoard();
+	Map* board = _level->getMap();
 	Game* game = _level->getGame();
 
 	return board->canMove(_position, _requestedDirection)

@@ -12,10 +12,9 @@ class Enemy;
 class MovingController;
 
 /*!
-Represents game level. This is actually "game itself":
-board, obstacels, coins, main character, environment etc.
+Represents game level: map, obstacels, coins, player, enemies, environment etc.
 */
-class Level : Stage // этап
+class Level : Stage 
 {
 public:
 	/*!
@@ -28,8 +27,8 @@ public:
 
 	Game* getGame() const;
 
-	Map* getBoard() const;
-	Player* getMainCharacter() const;
+	Map* getMap() const;
+	Player* getPlayer() const;
 
 	Hud* getHud();
 
@@ -47,7 +46,7 @@ private:
 	LevelInfo _config;
 
 	Hud* _hud;
-	Map* _board;
+	Map* _map;
 	Player* _player;
 	irr::core::array<Enemy*> _enemies;
 
@@ -76,14 +75,14 @@ private:
 	MovingController* createController(const LevelInfo::MovableController& config);
 
 	void createCamera();
-	void createBoard();
-	void createMainCharacter();
+	void createMap();
+	void createPlayer();
 	void createEnemies();
 
 	void removeControllers();
 
 	void removeCamera();
-	void removeBoard();
-	void removeMainCharacter();
+	void removeMap();
+	void removePlayer();
 	void removeEnemies();
 };

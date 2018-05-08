@@ -31,9 +31,9 @@ public:
 	*/
 	void injure(); // повредить
 
-				   /*!
-				   Obtains current value of lives counter.
-				   */
+    /*!
+	Obtains current value of lives counter.
+	*/
 	irr::u32 getLivesCount() const;
 	/*!
 	Obtains current value of counter of gathered coins.
