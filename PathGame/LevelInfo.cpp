@@ -43,7 +43,7 @@ void LevelInfo::readCamera(const stringw& name)
 
 void LevelInfo::readEnvironment(const stringw& name)
 {
-	if (name == "environment") {
+	if (name == "skyBox") {
 
 		SkyBox.Back = read<ITexture*>("back");
 		SkyBox.Bottom = read<ITexture*>("bottom");
@@ -81,7 +81,7 @@ void LevelInfo::readEnvironment(const stringw& name)
 
 void LevelInfo::readMap(const stringw& name)
 {
-	if (name == "board") {
+	if (name == "map") {
 
 		Map.Width = read<u32>("width");
 		Map.Height = read<u32>("height");
@@ -115,7 +115,7 @@ void LevelInfo::readMap(const stringw& name)
 
 void LevelInfo::readCharacters(const stringw& name)
 {
-	if (name == "mainCharacter") {
+	if (name == "player") {
 
 		Player.ControllerId = read<u32>("controllerId");
 

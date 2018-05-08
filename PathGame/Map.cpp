@@ -13,37 +13,43 @@ Map::Map(Level* level, const LevelInfo& config)
 
 	vector3df cellSize = config.Models.Floor.Mesh->getBoundingBox().getExtent();
 
-	f32 width = cellSize.X, fullWidth = width*config.Map.Width,
-		xOffset = fullWidth*0.5f;
-	f32 height = cellSize.Z, fullHeight = height*config.Map.Height,
-		yOffset = fullHeight*0.5f;
+	f32 width = cellSize.X;
+	f32 fullWidth = width*config.Map.Width;
+	f32 xOffset = fullWidth*0.5f;
+
+	f32 height = cellSize.Z;
+	f32 fullHeight = height*config.Map.Height;
+	f32 yOffset = fullHeight*0.5f;
 
 	_minimalDistance = width < height ? width : height;
 	_maximalDistanceSquared = fullWidth*fullWidth + fullHeight*fullHeight;
 
 	_cells.reallocate(config.Map.Width*config.Map.Height);
+
 	for (u32 i = 0; i < config.Map.Width; ++i)
 		for (u32 j = 0; j < config.Map.Height; ++j) {
-			f32 x = width*i - xOffset, y = height*j - yOffset;
+
+			f32 x = width*i - xOffset;
+			f32 y = height*j - yOffset;
+
 			_cells.push_back(rectf(x, y, x + width, y + height));
 		}
 
-	for (u32 i = 0; i < _cells.size(); ++i) {
+	// add floor (отображать на экране)
+	for (u32 i = 0; i < _cells.size(); ++i) 
 		addCellContent(i, config.Models.Floor.Mesh, -cellSize.Y);
-	}
 
-	for (u32 i = 0; i < config.Obstacles.size(); ++i) {
+	// add boxes (отображать на экране)
+	for (u32 i = 0; i < config.Obstacles.size(); ++i) 
 		addCellContent(config.Obstacles[i], config.Models.Obstacle.Mesh);
-	}
 
+	// add coins
 	_coinNodes.reallocate(_coins.size());
+
 	for (u32 i = 0; i < config.Coins.size(); ++i) {
 
-		IAnimatedMeshSceneNode* node = addCellContent(
-			config.Coins[i], config.Models.Coin.Mesh);
-
-		ISceneNodeAnimator* animator = scene->createRotationAnimator(
-			vector3df(config.CoinRotationSpeed, 0, 0));
+		IAnimatedMeshSceneNode* node = addCellContent(config.Coins[i], config.Models.Coin.Mesh);
+		ISceneNodeAnimator* animator = scene->createRotationAnimator(vector3df(config.CoinRotationSpeed, 0, 0));
 
 		node->setAnimationSpeed(config.Models.Coin.AnimationSpeed);
 		node->addAnimator(animator);
@@ -68,43 +74,10 @@ ISceneNode* Map::getRootNode() const
 	return _rootNode;
 }
 
-bool Map::canMove(u32 position, CH_DIRECTION direction) const
+IAnimatedMeshSceneNode* Map::addCellContent(u32 cell, IAnimatedMesh* mesh, f32 yOffset)
 {
-	u32 destination = getDestinationCell(position, direction);
-	if (_obstacles.binary_search(destination) != -1)
-		return false;
-	return destination < _cells.size();
-}
-
-u32 Map::getDestinationCell(u32 position, CH_DIRECTION direction) const
-{
-	u32 cell;
-
-	switch (direction) {
-
-	case CH_D_UP:
-		return position - _width;
-
-	case CH_D_DOWN:
-		return position + _width;
-
-	case CH_D_LEFT:
-		cell = position % _width;
-		// if position is not at left boundary or movement can't be performed
-		return cell ? position - 1 : -1;
-
-	case CH_D_RIGHT:
-		// if position is not at right boundary or movement can't be performed
-		cell = position % _width;
-		return cell != _width - 1 ? position + 1 : -1;
-
-	case CH_D_NONE:
-		return position;
-
-	default:
-		return -1;
-
-	}
+	vector2df center = _cells[cell].getCenter();
+	return _game->getDevice()->getSceneManager()->addAnimatedMeshSceneNode(mesh, _rootNode, -1, vector3df(center.X, yOffset, center.Y));
 }
 
 vector3df Map::getPosition(u32 cell)
@@ -150,25 +123,61 @@ f32 Map::getMaximalDistanceSquared() const
 	return _maximalDistanceSquared;
 }
 
+
+//---------------- Get available way for moving
+
 array<CH_DIRECTION> Map::getAvailableDirections(u32 position) const
 {
 	array<CH_DIRECTION> result(4);
 
-	if (canMove(position, CH_D_UP))
+	if (checkMove(position, CH_D_UP))
 		result.push_back(CH_D_UP);
-	if (canMove(position, CH_D_DOWN))
+	if (checkMove(position, CH_D_DOWN))
 		result.push_back(CH_D_DOWN);
 
-	if (canMove(position, CH_D_LEFT))
+	if (checkMove(position, CH_D_LEFT))
 		result.push_back(CH_D_LEFT);
-	if (canMove(position, CH_D_RIGHT))
+	if (checkMove(position, CH_D_RIGHT))
 		result.push_back(CH_D_RIGHT);
 
 	return result;
 }
 
-IAnimatedMeshSceneNode* Map::addCellContent(u32 cell, IAnimatedMesh* mesh, f32 yOffset)
+bool Map::checkMove(u32 position, CH_DIRECTION direction) const
 {
-	vector2df center = _cells[cell].getCenter();
-	return _game->getDevice()->getSceneManager()->addAnimatedMeshSceneNode(mesh, _rootNode, -1, vector3df(center.X, yOffset, center.Y));
+	u32 destination = getDestinationCell(position, direction);
+	if (_obstacles.binary_search(destination) != -1)
+		return false;
+	return destination < _cells.size();
+}
+
+u32 Map::getDestinationCell(u32 position, CH_DIRECTION direction) const
+{
+	u32 cell;
+
+	switch (direction) {
+
+	case CH_D_UP:
+		return position - _width;
+
+	case CH_D_DOWN:
+		return position + _width;
+
+	case CH_D_LEFT:
+		cell = position % _width;
+		// if position is not at left boundary or movement can't be performed
+		return cell ? position - 1 : -1;
+
+	case CH_D_RIGHT:
+		// if position is not at right boundary or movement can't be performed
+		cell = position % _width;
+		return cell != _width - 1 ? position + 1 : -1;
+
+	case CH_D_NONE:
+		return position;
+
+	default:
+		return -1;
+
+	}
 }

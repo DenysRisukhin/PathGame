@@ -19,26 +19,67 @@ public:
 
 	~Map(void);
 
+	/*!
+	Returns parent scene node for all map's elements.
+	*/
 	irr::scene::ISceneNode* getRootNode() const;
 
-	bool canMove(irr::u32 position, CH_DIRECTION direction) const;
+	/*!
+	Returns true if requested movement is possible for any movable.
+	@param position Index of source cell.
+	@param direction Desired direction.
+	*/
+	bool checkMove(irr::u32 position, CH_DIRECTION direction) const;
 
+	/*!
+	Returns destination cell for requested movement or invalid value.
+	"Invalid value" means illegal index (greater or equal to cells count).
+	@param position Index of source cell.
+	@param direction Desired direction.
+	*/
 	irr::u32 getDestinationCell(irr::u32 position, CH_DIRECTION direction) const;
 
+	/*!
+	Returns "physical" position of center of the cell.
+	@param cell Index of the cell to obtain position for.
+	*/
 	irr::core::vector3df getPosition(irr::u32 cell);
 
+	/*!
+	Collects coin (if possible): removes it from scene and return true.
+	@param cell Cell's index to find and collect coin from.
+	*/
 	bool collectCoin(irr::u32 cell);
 
+	/*!
+	Returns number of coins left.
+	*/
 	irr::u32 getCoinsCount() const;
 
+	/*!
+	Returns full width (all cells) of map in world's units.
+	*/
 	irr::f32 getWidth() const;
 
+	/*!
+	Returns full height (all cells) of map in world's units.
+	*/
 	irr::f32 getHeight() const;
 
+	/*!
+	Returns minimal distance between cells' centers.
+	*/
 	irr::f32 getMinimalDistance() const;
 
+	/*!
+	Obtains maximal distance between cell's centers (squared).
+	*/
 	irr::f32 getMaximalDistanceSquared() const;
 
+	/*!
+	Obtains array of available directions for given position.
+	@param position Index of source cell.
+	*/
 	irr::core::array<CH_DIRECTION> getAvailableDirections(irr::u32 position) const;
 
 private:

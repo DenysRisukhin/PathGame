@@ -71,7 +71,6 @@ Hud::~Hud(void)
 {
 	if (soundLogo)
 	{
-
 		soundLogo->remove();
 		soundLogo = NULL;
 	}
@@ -167,9 +166,7 @@ bool Hud::OnEvent(const SEvent& event)
 
 void Hud::createLabel(IGUIStaticText** label, const HudInfo::Label& config)
 {
-	*label = _game->getDevice()->getGUIEnvironment()->addStaticText(
-		config.Prefix.c_str(), rect<s32>(vector2d<s32>(config.X, config.Y),
-			dimension2du(config.Width, config.Height)), false, false);
+	*label = _game->getDevice()->getGUIEnvironment()->addStaticText(config.Prefix.c_str(), rect<s32>(vector2d<s32>(config.X, config.Y), dimension2du(config.Width, config.Height)), false, false);
 
 	IGUIStaticText& text = **label;
 

@@ -6,13 +6,7 @@
 #include "MovingControllerType.h"
 
 /*!
-Represents level config: contains a lot of settings
-not only for level as high level entity, but also for
-the most of level entities such as map, a set of enemies etc.
-(You can think that it is in some extent over-saturated but
-decision to store almost all level-related information in one place
-was taken to prevent creation of tens of small files in the
-solution folder to represent tiny configs for level entities.)
+Represents level settings: level, map, player, skyBox, models, enemies etc.
 */
 class LevelInfo : Info
 {

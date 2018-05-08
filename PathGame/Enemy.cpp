@@ -22,15 +22,14 @@ Enemy::~Enemy(void)
 
 void Enemy::update()
 {
-	Player* character = _level->getPlayer();
-	Map* board = _level->getMap();
+	Player* player = _level->getPlayer();
+	Map* map = _level->getMap();
 
-	vector3df characterPosition = board->getPosition(
-		character->getPosition());
-	vector3df enemyPosition = board->getPosition(getPosition());
+	vector3df characterPosition = map->getPosition(player->getPosition());
+	vector3df enemyPosition = map->getPosition(getPosition());
 
-	if (characterPosition.getDistanceFrom(enemyPosition) < board->getMinimalDistance())
-		character->injure();
+	if (characterPosition.getDistanceFrom(enemyPosition) < map->getMinimalDistance())
+		player->injure();
 
 	Moving::update();
 }

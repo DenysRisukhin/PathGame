@@ -48,44 +48,10 @@ Level::~Level(void)
 	removeEnemies();
 }
 
-Game* Level::getGame() const
-{
-	return _game;
-}
-
-Map* Level::getMap() const
-{
-	return _map;
-}
-
-Player* Level::getPlayer() const
-{
-	return _player;
-}
-
-void Level::refreshStatistics()
-{
-	if (!_map->getCoinsCount()) {
-		//	_hud->showPressAnyKeyIndicator(true);
-		deactivate(GE_LEVEL_SUCCEEDED);
-	}
-
-	u32 lives = _player->getLivesCount();
-	if (!lives) {
-		//	_hud->showPressAnyKeyIndicator(true);
-		deactivate(GE_LEVEL_FAILED);
-	}
-
-	_hud->setLivesCount(lives);
-	_hud->setCoinsCount(_player->getCoinsCount());
-}
-
 bool Level::OnEvent(const SEvent& event)
 {
-	if (_state == ES_ACTIVE &&
-		event.EventType == EET_KEY_INPUT_EVENT &&
-		event.KeyInput.PressedDown) {
-
+	if (_state == ES_ACTIVE && event.EventType == EET_KEY_INPUT_EVENT && event.KeyInput.PressedDown)
+	{
 		if (event.KeyInput.Key == _config.AbortKey) {
 			deactivate(GE_LEVEL_ABORTED);
 			return true;
@@ -124,14 +90,33 @@ bool Level::OnEvent(const SEvent& event)
 		_hud->deactivate();
 
 	if (_state == ES_ACTIVE) {
+
 		if (_hud->OnEvent(event))
 			return true;
+
 		for (u32 i = 0; i < _controllers.size(); ++i)
 			if (_controllers[i]->OnEvent(event))
 				return true;
 	}
 
 	return Stage::OnEvent(event);
+}
+
+void Level::refreshStatistics()
+{
+	if (!_map->getCoinsCount()) {
+		//	_hud->showPressAnyKeyIndicator(true);
+		deactivate(GE_LEVEL_SUCCEEDED);
+	}
+
+	u32 lives = _player->getLivesCount();
+	if (!lives) {
+		//	_hud->showPressAnyKeyIndicator(true);
+		deactivate(GE_LEVEL_FAILED);
+	}
+
+	_hud->setLivesCount(lives);
+	_hud->setCoinsCount(_player->getCoinsCount());
 }
 
 void Level::togglePaused()
@@ -144,7 +129,7 @@ void Level::update()
 	if (_paused)
 		return;
 
-	_player->getNode()->getMaterial(0).MaterialType = _player->isVisible() ? EMT_SOLID : EMT_TRANSPARENT_VERTEX_ALPHA;
+	//_player->getNode()->getMaterial(0).MaterialType = _player->isVisible() ? EMT_SOLID : EMT_TRANSPARENT_VERTEX_ALPHA;
 
 	_player->update();
 	for (u32 i = 0; i < _enemies.size(); ++i)
@@ -160,36 +145,9 @@ IAnimatedMeshSceneNode* Level::createNode(const LevelInfo::Model& model, u32 pos
 	return node;
 }
 
-MovingController* Level::createController(const LevelInfo::MovableController& config)
-{
-	switch (config.Type) {
-
-	case EMCT_PLAYER:
-		return (MovingController*) new PlayerMovingController(_config.Controls);
-
-	case EMCT_ENEMY:
-		return (MovingController*) new EnemyMovingController(_map, _player);
-
-		/*case EMCT_RANDOM:
-		return (MovableController*) new RandomMovableController(
-		_map, config.Parameter.TurnProbability);
-
-		case EMCT_WALKING:
-		return (MovableController*) new WalkingMovableController(
-		_config.WaypointsSets[config.Parameter.WaypointsSetId]);*/
-
-		//default:
-		//throw NotImplementedException();
-
-	}
-}
-
-
 void Level::createCamera()
 {
-	_camera = _game->getDevice()->getSceneManager(
-	)->addCameraSceneNode(_rootNode,
-		vector3df(1), vector3df(), -1, false);
+	_camera = _game->getDevice()->getSceneManager()->addCameraSceneNode(_rootNode, vector3df(1), vector3df(), -1, false);
 
 	_camera->setFOV(_config.Camera.Fov);
 
@@ -206,7 +164,8 @@ void Level::createCamera()
 	_camera->setPosition(vector3df(
 		_cameraRadius*sinf(_cameraAngles.Y)*cosf(_cameraAngles.X),
 		_cameraRadius*cosf(_cameraAngles.Y),
-		_cameraRadius*sinf(_cameraAngles.Y)*sinf(_cameraAngles.X)));
+		_cameraRadius*sinf(_cameraAngles.Y)*sinf(_cameraAngles.X)
+	));
 }
 
 void Level::createMap()
@@ -241,6 +200,49 @@ void Level::createEnemies()
 	}
 }
 
+MovingController* Level::createController(const LevelInfo::MovableController& config)
+{
+	switch (config.Type) {
+
+	case EMCT_PLAYER:
+		return (MovingController*) new PlayerMovingController(_config.Controls);
+
+	case EMCT_ENEMY:
+		return (MovingController*) new EnemyMovingController(_map, _player);
+
+		/*case EMCT_RANDOM:
+		return (MovableController*) new RandomMovableController(
+		_map, config.Parameter.TurnProbability);
+
+		case EMCT_WALKING:
+		return (MovableController*) new WalkingMovableController(
+		_config.WaypointsSets[config.Parameter.WaypointsSetId]);*/
+
+		//default:
+		//throw NotImplementedException();
+
+	}
+}
+
+Hud* Level::getHud() {
+	return _hud;
+}
+
+Game* Level::getGame() const
+{
+	return _game;
+}
+
+Map* Level::getMap() const
+{
+	return _map;
+}
+
+Player* Level::getPlayer() const
+{
+	return _player;
+}
+
 void Level::removeControllers()
 {
 	for (u32 i = 0; i < _controllers.size(); ++i)
@@ -270,6 +272,3 @@ void Level::removeEnemies()
 	_enemies.clear();
 }
 
-Hud* Level::getHud() {
-	return _hud;
-}

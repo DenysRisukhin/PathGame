@@ -7,13 +7,13 @@
 class Game;
 
 /*!
-Represents main character (MC) entity.
+Represents Player entity.
 */
 class Player : public Moving
 {
 public:
 	/*!
-	Constructs new main character.
+	Constructs new player.
 	@param level Level instance.
 	@param node MC's scene node.
 	@param config Level's config.

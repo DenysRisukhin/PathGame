@@ -36,8 +36,9 @@ void Moving::update()
 	if (isStopped()) {
 		OnPosition(_position);
 
-		Map* board = _level->getMap();
-		if (board->canMove(_position, _requestedDirection)) {
+		Map* map = _level->getMap();
+
+		if (map->checkMove(_position, _requestedDirection)) {
 			if (_animator = getAnimator()) {
 
 				_node->removeAnimators();
@@ -47,8 +48,7 @@ void Moving::update()
 				_node->setRotation(vector3df(
 					0, getAngle(_requestedDirection), 0));
 
-				_position = board->getDestinationCell(
-					_position, _requestedDirection);
+				_position = map->getDestinationCell(_position, _requestedDirection);
 
 				_hitSoundPlayed = false;
 			}
@@ -77,15 +77,11 @@ IAnimatedMeshSceneNode* Moving::getNode() const
 
 ISceneNodeAnimator* Moving::getAnimator()
 {
-	Map* board = _level->getMap();
+	Map* map = _level->getMap();
 	Game* game = _level->getGame();
 
-	return board->canMove(_position, _requestedDirection)
-		? game->getDevice()->getSceneManager()->createFlyStraightAnimator(
-			board->getPosition(_position), board->getPosition(
-				board->getDestinationCell(_position, _requestedDirection)),
-				(u32)(1000 / _speed))
-		: NULL;
+	return map->checkMove(_position, _requestedDirection) ?
+		   game->getDevice()->getSceneManager()->createFlyStraightAnimator(map->getPosition(_position), map->getPosition(map->getDestinationCell(_position, _requestedDirection)),(u32)(1000 / _speed)) : NULL;
 }
 
 f32 Moving::getAngle(CH_DIRECTION direction)
