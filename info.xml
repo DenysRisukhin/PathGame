@@ -10,7 +10,7 @@
         <stage type="1" configFilename="Menus/sound.xml"/>
         <stage type="1" configFilename="Menus/main.xml"/>
       
-        <stage type="2" configFilename="Levels/default.xml"/>
+        <stage type="2" configFilename="Levels/level.xml"/>
       
 		    <stage type="1" configFilename="Menus/pauseMenu.xml"/>
 	  	  <stage type="1" configFilename="Menus/playAgain.xml"/>
