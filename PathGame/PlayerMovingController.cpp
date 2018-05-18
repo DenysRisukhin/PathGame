@@ -28,7 +28,7 @@ bool PlayerMovingController::OnEvent(const SEvent& event)
 {
 	if (event.EventType == EET_KEY_INPUT_EVENT && event.KeyInput.PressedDown && _controls.find(event.KeyInput.Key))
 	{
-		_movable->move(_controls[event.KeyInput.Key]);
+		_moving->move(_controls[event.KeyInput.Key]);
 		return true;
 	}
 	return false;

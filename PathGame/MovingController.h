@@ -5,7 +5,7 @@
 class Moving;
 
 /*!
-Represents base class for controller with movable
+Represents base class for controller with moving
 as controlled object.
 */
 class MovingController : public IController
@@ -24,5 +24,5 @@ public:
 	void setMovable(Moving* movable);
 
 protected:
-	Moving* _movable;
+	Moving* _moving;
 };

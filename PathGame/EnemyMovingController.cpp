@@ -23,12 +23,12 @@ void EnemyMovingController::refresh()
 
 bool EnemyMovingController::OnEvent(const SEvent& event)
 {
-	if (Game::ToGameEvent(event) == GE_FRAME_ENDED &&
-		_movable->isStopped()) {
+	if (Game::ToGameEvent(event) == GE_FRAME_ENDED && _moving->isStopped()) {
 
-		// assumes we are in the best position and should not move
-		u32 destinationCell = _movable->getPosition();
+		u32 destinationCell = _moving->getPosition();
+
 		vector3df destinationPosition = _map->getPosition(destinationCell);
+
 		CH_DIRECTION direction = CH_D_NONE;
 
 		// computes position of our target
@@ -40,12 +40,13 @@ bool EnemyMovingController::OnEvent(const SEvent& event)
 		if (sqrtf(minimalDistance) > _map->getMinimalDistance())
 			minimalDistance = _map->getMaximalDistanceSquared();
 
-		// checks: is better position exists
-		// if exists then uses it
+		// checks: is better position exists, if exists then uses it
 		array<CH_DIRECTION> directions = getAvailableDirections();
+
 		for (u32 i = 0; i < directions.size(); ++i) {
 
-			u32 destinationCell = _map->getDestinationCell(_movable->getPosition(), directions[i]);
+			u32 destinationCell = _map->getDestinationCell(_moving->getPosition(), directions[i]);
+			
 			vector3df destinationPosition = _map->getPosition(destinationCell);
 
 			f32 distance = destinationPosition.getDistanceFromSQ(targetPosition);
@@ -57,13 +58,11 @@ bool EnemyMovingController::OnEvent(const SEvent& event)
 
 		}
 
-		// adds current position to the list of used
-		// to prevent up-down or left-right jittering when target 
-		// is behind the obstacle
-		_usedPositions.push_back(_movable->getPosition());
+		// adds current position to the list of used to prevent up-down or left-right jittering when target  is behind the obstacle
+		_usedPositions.push_back(_moving->getPosition());
 
 		// moves controlled entity
-		_movable->move(direction);
+		_moving->move(direction);
 
 	}
 	return false;
@@ -78,11 +77,15 @@ array<CH_DIRECTION> EnemyMovingController::getAvailableDirections()
 		_previousTargetPosition = targetPosition;
 	}
 
-	u32 position = _movable->getPosition();
+	u32 position = _moving->getPosition();
+
+
 	array<CH_DIRECTION> directions = _map->getAvailableDirections(position);
 
-	for (u32 i = 0; i < directions.size(); ++i) {
+	for (u32 i = 0; i < directions.size(); ++i)
+	{
 		u32 destination = _map->getDestinationCell(position, directions[i]);
+	
 		if (_usedPositions.linear_search(destination) != -1) {
 			directions.erase(i--, 1);
 		}

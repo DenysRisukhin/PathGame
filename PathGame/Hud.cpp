@@ -12,7 +12,6 @@ using namespace scene;
 
 static const f32 MIN_OPACITY = 0.01f;
 
-
 Hud::Hud(Level* level, const path& configFilename) : _game(level->getGame())
 , _config(_game, configFilename)
 , _pauseIndicated(false)
@@ -108,8 +107,6 @@ void Hud::show(bool show)
 	_pauseIndicatorLabel->setVisible(show && _pauseIndicated);
 	healthLogo->setVisible(show);
 	moneyLogo->setVisible(show);
-	//_controlIndicatorLabel->setVisible(show);
-	//_pressAnyKeyIndicatorLabel->setVisible(show);
 }
 
 void Hud::setLivesCount(u32 count)
@@ -134,7 +131,6 @@ void Hud::showPressAnyKeyIndicator(bool show)
 
 bool Hud::OnEvent(const SEvent& event)
 {
-
 	ISceneManager* scene;
 	IVideoDriver* video;
 

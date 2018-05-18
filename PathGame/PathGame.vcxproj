@@ -170,12 +170,10 @@
     <ClCompile Include="MovingController.cpp" />
     <ClCompile Include="EnemyMovingController.cpp" />
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="RandomMovableController.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageInfo.cpp" />
     <ClCompile Include="VirtualXmlReader.cpp" />
-    <ClCompile Include="WalkingMovableController.cpp" />
     <ClCompile Include="XmlReader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -206,19 +204,17 @@
     <ClInclude Include="MovingController.h" />
     <ClInclude Include="EnemyMovingController.h" />
     <ClInclude Include="Random.h" />
-    <ClInclude Include="RandomMovableController.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageInfo.h" />
     <ClInclude Include="StageConfig.h" />
     <ClInclude Include="VirtualXmlReader.h" />
-    <ClInclude Include="WalkingMovableController.h" />
     <ClInclude Include="XmlReader.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\info.xml" />
     <Xml Include="..\Media\Fonts\comic.xml" />
-    <Xml Include="..\Media\Levels\default.xml" />
+    <Xml Include="..\Media\Levels\level.xml" />
     <Xml Include="..\Media\LogoScreens\about.xml" />
     <Xml Include="..\Media\LogoScreens\help.xml" />
     <Xml Include="..\Media\LogoScreens\logo.xml" />

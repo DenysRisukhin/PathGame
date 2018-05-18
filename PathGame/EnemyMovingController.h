@@ -34,6 +34,7 @@ private:
 	Moving* _target;
 
 	irr::u32 _previousTargetPosition;
+
 	irr::core::array<irr::u32> _usedPositions;
 
 	irr::core::array<CH_DIRECTION> getAvailableDirections();

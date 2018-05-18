@@ -17,6 +17,7 @@ int main() {
 		return 1;
 	}
 
+
 	while (game->update());
 
 	delete game;

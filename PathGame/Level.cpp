@@ -63,6 +63,7 @@ bool Level::OnEvent(const SEvent& event)
 
 	}
 
+
 	if (Game::ToGameEvent(event) == GE_LEVEL_REQUESTED) {
 		removeCamera();
 		removeMap();
@@ -129,13 +130,10 @@ void Level::update()
 	if (_paused)
 		return;
 
-	//_player->getNode()->getMaterial(0).MaterialType = _player->isVisible() ? EMT_SOLID : EMT_TRANSPARENT_VERTEX_ALPHA;
-
 	_player->update();
+
 	for (u32 i = 0; i < _enemies.size(); ++i)
 		_enemies[i]->update();
-
-	//_hud->showPressAnyKeyIndicator(true);
 }
 
 IAnimatedMeshSceneNode* Level::createNode(const LevelInfo::Model& model, u32 position)

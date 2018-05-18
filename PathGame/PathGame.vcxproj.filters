@@ -87,12 +87,6 @@
     <ClCompile Include="Hud.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="RandomMovableController.cpp">
-      <Filter>Controllers\MovingTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="WalkingMovableController.cpp">
-      <Filter>Controllers\MovingTypes</Filter>
-    </ClCompile>
     <ClCompile Include="VirtualXmlReader.cpp">
       <Filter>Utility\XMLParser\Reader</Filter>
     </ClCompile>
@@ -136,14 +130,14 @@
     <ClCompile Include="EnemyMovingController.cpp">
       <Filter>Controllers\MovingTypes</Filter>
     </ClCompile>
-    <ClCompile Include="MovingController.cpp">
-      <Filter>Controllers\MovingTypes</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMovingController.cpp">
       <Filter>Controllers\MovingTypes</Filter>
     </ClCompile>
     <ClCompile Include="InitException.cpp">
       <Filter>Utility\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingController.cpp">
+      <Filter>Controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,15 +167,6 @@
     </ClInclude>
     <ClInclude Include="Hud.h">
       <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="IController.h">
-      <Filter>Controllers\MovingTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomMovableController.h">
-      <Filter>Controllers\MovingTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="WalkingMovableController.h">
-      <Filter>Controllers\MovingTypes</Filter>
     </ClInclude>
     <ClInclude Include="IConfigReader.h">
       <Filter>Utility\XMLParser\Reader</Filter>
@@ -240,9 +225,6 @@
     <ClInclude Include="EnemyMovingController.h">
       <Filter>Controllers\MovingTypes</Filter>
     </ClInclude>
-    <ClInclude Include="MovingController.h">
-      <Filter>Controllers\MovingTypes</Filter>
-    </ClInclude>
     <ClInclude Include="MovingControllerType.h">
       <Filter>Controllers\MovingTypes</Filter>
     </ClInclude>
@@ -251,6 +233,12 @@
     </ClInclude>
     <ClInclude Include="InitException.h">
       <Filter>Utility\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="IController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingController.h">
+      <Filter>Controllers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -262,9 +250,6 @@
     </Xml>
     <Xml Include="..\info.xml">
       <Filter>Resources\XML</Filter>
-    </Xml>
-    <Xml Include="..\Media\Levels\default.xml">
-      <Filter>Resources\XML\Level</Filter>
     </Xml>
     <Xml Include="..\Media\Menus\main.xml">
       <Filter>Resources\XML\Menus</Filter>
@@ -292,6 +277,9 @@
     </Xml>
     <Xml Include="..\Media\LogoScreens\logo.xml">
       <Filter>Resources\XML\Logo</Filter>
+    </Xml>
+    <Xml Include="..\Media\Levels\level.xml">
+      <Filter>Resources\XML\Level</Filter>
     </Xml>
   </ItemGroup>
 </Project>

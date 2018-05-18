@@ -34,19 +34,20 @@ void Moving::move(CH_DIRECTION direction)
 void Moving::update()
 {
 	if (isStopped()) {
+
 		OnPosition(_position);
 
 		Map* map = _level->getMap();
 
-		if (map->checkMove(_position, _requestedDirection)) {
-			if (_animator = getAnimator()) {
-
+		if (map->checkMove(_position, _requestedDirection))
+		{
+			if (_animator = getAnimator())
+			{
 				_node->removeAnimators();
 				_node->addAnimator(_animator);
 				_animator->drop();
 
-				_node->setRotation(vector3df(
-					0, getAngle(_requestedDirection), 0));
+				_node->setRotation(vector3df(0, getAngle(_requestedDirection), 0));
 
 				_position = map->getDestinationCell(_position, _requestedDirection);
 
@@ -81,7 +82,7 @@ ISceneNodeAnimator* Moving::getAnimator()
 	Game* game = _level->getGame();
 
 	return map->checkMove(_position, _requestedDirection) ?
-		   game->getDevice()->getSceneManager()->createFlyStraightAnimator(map->getPosition(_position), map->getPosition(map->getDestinationCell(_position, _requestedDirection)),(u32)(1000 / _speed)) : NULL;
+		   game->getDevice()->getSceneManager()->createFlyStraightAnimator( map->getPosition(_position), map->getPosition(map->getDestinationCell(_position, _requestedDirection)),(u32)(1000 / _speed) ) : NULL;
 }
 
 f32 Moving::getAngle(CH_DIRECTION direction)

@@ -25,10 +25,10 @@ void Enemy::update()
 	Player* player = _level->getPlayer();
 	Map* map = _level->getMap();
 
-	vector3df characterPosition = map->getPosition(player->getPosition());
+	vector3df playerPosition = map->getPosition(player->getPosition());
 	vector3df enemyPosition = map->getPosition(getPosition());
 
-	if (characterPosition.getDistanceFrom(enemyPosition) < map->getMinimalDistance())
+	if (playerPosition.getDistanceFrom(enemyPosition) < map->getMinimalDistance())
 		player->injure();
 
 	Moving::update();
