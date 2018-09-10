@@ -35,6 +35,7 @@
     <skyBox left="Images/lefttron.jpg" right="Images/righttron.jpg"
                  top="Images/downtron.jpg" bottom="Images/uptron.jpg"
                  front="Images/fronttron.jpg" back="Images/backtron.jpg"/>
+  
     <keys>
         <key type="pause" code="32"/>
         <key type="abort" code="27"/>

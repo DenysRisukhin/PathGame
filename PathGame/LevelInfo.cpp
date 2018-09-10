@@ -53,6 +53,17 @@ void LevelInfo::readEnvironment(const stringw& name)
 		SkyBox.Top = read<ITexture*>("top");
 
 	}
+	else if (name == "key") {
+
+		stringw type = read<stringw>("type");
+		EKEY_CODE code = (EKEY_CODE)read<u32>("code");
+
+		if (type == "pause")
+			PauseKey = code;
+		else if (type == "abort")
+			AbortKey = code;
+
+	}
 	else if (name == "sound") {
 
 		stringw type = read<stringw>("type");
@@ -64,18 +75,6 @@ void LevelInfo::readEnvironment(const stringw& name)
 			SoundFilenames.Coin = filename;
 		if (type == "death")
 			SoundFilenames.Death = filename;
-
-	}
-	else if (name == "key") {
-
-		stringw type = read<stringw>("type");
-		EKEY_CODE code = (EKEY_CODE)read<u32>("code");
-
-		if (type == "pause")
-			PauseKey = code;
-		else if (type == "abort")
-			AbortKey = code;
-
 	}
 }
 

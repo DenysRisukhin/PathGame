@@ -16,7 +16,7 @@ using namespace scene;
 
 Level::Level(Game* game, const StageConfig& stage)
 	: Stage(game, stage, "level")
-	, _config(LevelInfo(_game, stage.ConfigFilename))// попытка ссылки на удаленную функцию
+	, _config(LevelInfo(game, stage.ConfigFilename))// попытка ссылки на удаленную функцию
 	, _paused(false)
 {
 	// camera
@@ -41,11 +41,11 @@ Level::~Level(void)
 {
 	//delete _hud;
 
-	removeControllers();
+	/*removeControllers();
 	removeCamera();
 	removeMap();
 	removePlayer();
-	removeEnemies();
+	removeEnemies();*/
 }
 
 bool Level::OnEvent(const SEvent& event)

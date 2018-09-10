@@ -233,9 +233,11 @@ IEventReceiver* Game::createStage(const StageConfig& stage)
 		case ST_LOGO:
 			return (IEventReceiver*) new LogoScreen(this, stage);
 
-		case ST_MENU:
+		case ST_MENU: {
 			return (IEventReceiver*) new Menu(this, stage);
+		}
 
+			
 		case ST_LEVEL: {
 			auto level = new Level(this, stage);
 			_hud = level->getHud();
