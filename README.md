@@ -39,9 +39,9 @@ Game Controls:
 	pause:	          SPACE
 
 
-	Audio:
+Audio:
 
-Music support
+	Music support
 
 	Support for sound effects according to the events of the game
 
