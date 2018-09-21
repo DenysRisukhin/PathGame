@@ -1,7 +1,7 @@
 Watch gameplay video here:
 
 [![collage5](https://user-images.githubusercontent.com/38033580/38811579-9029232e-4192-11e8-80a4-35a1d4ec9fbf.jpg)
-](http://www.youtube.com/embed/01cZ_v6islo)
+](http://www.youtube.com/embed/?v=ym_KiCaKy-I)
 
                                                Description
  
