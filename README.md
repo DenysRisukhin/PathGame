@@ -11,7 +11,7 @@ Tools:
 
 	● Language: C++
 
-	● Game engine: Irrlicht3D
+	● Game engine: Irrlicht
 
 Game Flow: 
 
